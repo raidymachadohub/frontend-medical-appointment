@@ -17,8 +17,8 @@ import {MatTableDataSource} from '@angular/material';
 })
 export class ScheduleComponent implements OnInit {
 
-  private schedule: Schedule = new Schedule();
-  private listDoctor: Array<Doctor> = new Array<Doctor>();
+  public schedule: Schedule = new Schedule();
+  public listDoctor: Array<Doctor> = new Array<Doctor>();
   dataSource: MatTableDataSource<Schedule> = new MatTableDataSource();
 
   constructor(private service: ScheduleService,

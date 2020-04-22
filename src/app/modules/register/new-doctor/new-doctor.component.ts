@@ -13,7 +13,7 @@ import {DoctorService} from '../../../services/doctor.service';
 })
 export class NewDoctorComponent implements OnInit {
 
-  private listSpecialty: Array<Specialty> = new Array<Specialty>();
+  public listSpecialty: Array<Specialty> = new Array<Specialty>();
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Doctor,
               public dialogRef: MatDialogRef<NewDoctorComponent>,

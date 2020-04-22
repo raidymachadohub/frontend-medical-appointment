@@ -13,7 +13,7 @@ import {Router} from '@angular/router';
 })
 export class AuthComponent implements OnInit {
 
-  private auth: Auth = new Auth();
+  public auth: Auth = new Auth();
 
   constructor(private serviceSignin: AuthSigninService,
               private serviceStorage: AuthTokenStorageService,

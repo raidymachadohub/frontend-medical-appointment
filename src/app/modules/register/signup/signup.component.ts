@@ -29,7 +29,7 @@ export class SignupComponent implements OnInit {
   ]);
 
   matcher = new MyErrorStateMatcher();
-  private auth: Auth = new Auth();
+  public auth: Auth = new Auth();
 
 
   constructor(private serviceSignup: AuthSignupService,
