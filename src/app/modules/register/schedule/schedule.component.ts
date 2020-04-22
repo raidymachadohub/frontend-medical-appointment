@@ -33,7 +33,6 @@ export class ScheduleComponent implements OnInit {
   ngOnInit() {
     this.loadCustomer();
     this.loadDoctor();
-    this.loadSchedule();
   }
 
   public loadCustomer(): void {
@@ -41,6 +40,7 @@ export class ScheduleComponent implements OnInit {
     this.serviceCustomer.addParameter('username', localStorage.getItem('USER_STORAGE'));
     this.serviceCustomer.getOne().subscribe(x => {
       this.schedule.customer_obj = x;
+      this.loadSchedule();
     });
   }
 
@@ -62,15 +62,19 @@ export class ScheduleComponent implements OnInit {
 
 
   public loadSchedule(): void {
+    this.service.clearParameter();
+    this.service.addParameter('customer', String(this.schedule.customer_obj.id));
     this.service.getAll().subscribe(x => {
-      this.dataSource.data = x;
+      if (x.length > 0) {
+        this.dataSource.data = x.filter(x => x.customer_obj.id === this.schedule.customer_obj.id);
+      }
     });
   }
 
   public delete(row: Schedule) {
     this.service.delete(row.id).subscribe(x => {
     });
-    this.toast.success('Deletado com sucesso');
     this.loadSchedule();
+    this.toast.success('Deletado com sucesso');
   }
 }
