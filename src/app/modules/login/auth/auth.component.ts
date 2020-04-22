@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthSigninService} from '../../../services/auth-signin.service';
-import {AuthSignupService} from '../../../services/auth-signup.service';
 import {Auth} from '../../../model/auth';
 import {AuthTokenStorageService} from '../../../services/auth-token-storage.service';
 import {ToastrService} from 'ngx-toastr';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -16,9 +16,9 @@ export class AuthComponent implements OnInit {
   private auth: Auth = new Auth();
 
   constructor(private serviceSignin: AuthSigninService,
-              private serviceSignup: AuthSignupService,
               private serviceStorage: AuthTokenStorageService,
-              private toast: ToastrService) {
+              private toast: ToastrService,
+              private route: Router) {
   }
 
 
@@ -27,11 +27,11 @@ export class AuthComponent implements OnInit {
 
   public validate(): boolean {
     if (this.auth.username === undefined || !this.auth.username) {
-      this.toast.error('Insira usuário', 'Erro');
+      this.toast.error('Insira o email', 'Erro');
       return false;
     }
     if (this.auth.password === undefined || !this.auth.password) {
-      this.toast.error('Insira senha', 'Erro');
+      this.toast.error('Insira a senha', 'Erro');
       return false;
     }
 
@@ -41,16 +41,21 @@ export class AuthComponent implements OnInit {
   public signin(): void {
     if (this.validate()) {
       this.serviceSignin.authJWT(this.auth).subscribe(x => {
-        this.serviceStorage.setToken(x.accessToken);
-        this.serviceStorage.setUsername(this.auth.username);
+
+        if (x.code === 400) {
+          this.toast.error(x.message);
+        } else {
+          this.serviceStorage.setToken(x.accessToken);
+          this.serviceStorage.setUsername(this.auth.username);
+          this.route.navigate(['/']);
+        }
       });
     }
   }
 
   public signup(): void {
-    this.serviceSignup.authJWT(this.auth).subscribe(x => {
-      //OK
-    });
+    this.route.navigate(['signup']);
   }
+
 
 }

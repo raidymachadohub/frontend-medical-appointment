@@ -1,0 +1,22 @@
+<form name="form" #f="ngForm" (submit)="f.form.valid && save()" novalidate>
+  <mat-form-field class="container-doctor">
+    <input matInput placeholder="Nome" name="name_" [(ngModel)]="data.name" required>
+  </mat-form-field>
+
+  <mat-form-field class="container-doctor">
+    <input matInput placeholder="CRM" name="crm_" [(ngModel)]="data.crm" required>
+  </mat-form-field>
+
+  <mat-form-field class="container-doctor">
+    <mat-label>Especialidade</mat-label>
+    <mat-select [(ngModel)]="data.specialty_obj.id" name="specialty_" required>
+      <mat-option *ngFor="let item of listSpecialty" [value]="item.id">
+        {{item.name}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="container-doctor">
+    <button mat-raised-button color="primary" type="submit">Salvar</button>
+  </div>
+</form>

@@ -82,6 +82,14 @@ export class BaseService<T> {
       );
   }
 
+  public getOne(): Observable<T> {
+    return this.httpClient.get<T>(this.fullUrl, this.addOptions(this.parameters))
+      .pipe(
+        tap(response => response as HttpUserEvent<T>),
+        catchError(ex => from([]))
+      );
+  }
+
   public save(entity: T): Observable<T> {
     this.clearParameter();
     return this.httpClient.post<T>(this.fullUrl, entity, this.addOptions(this.parameters))
@@ -108,7 +116,7 @@ export class BaseService<T> {
       );
   }
 
-  public delete(id: number): any {
+  public delete(id: number): Observable<T> {
     this.clearParameter();
     return this.httpClient.delete<any>(this.fullUrl.concat(String(id) + '/'), this.addOptions(this.parameters))
       .pipe(
@@ -119,7 +127,7 @@ export class BaseService<T> {
 
   public update(id: number, body: any): Observable<T> {
     this.clearParameter();
-    return this.httpClient.patch<T>(this.fullUrl.concat(String(id) + '/'), body, this.addOptions(this.parameters))
+    return this.httpClient.put<T>(this.fullUrl.concat(String(id) + '/'), body, this.addOptions(this.parameters))
       .pipe(
         tap(response => response as HttpUserEvent<T>),
         catchError(ex => from([]))

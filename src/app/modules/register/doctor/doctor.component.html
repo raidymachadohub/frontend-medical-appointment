@@ -1,1 +1,51 @@
-<p>doctor works!</p>
+<div class="display-flex">
+  <div class="btn-new">
+    <button matTooltip="Clique adicionar um doutor" mat-fab (click)="new()" color="primary">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>
+
+
+<div class="table">
+  <mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef> Nome</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.name}}</mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="crm">
+      <mat-header-cell *matHeaderCellDef> CRM</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.crm}}</mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="dt_update">
+      <mat-header-cell *matHeaderCellDef> Última Atualização</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.dt_update | date: 'dd/MM/yyyy hh:MM:ss'}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="specialty">
+      <mat-header-cell *matHeaderCellDef>Especialidade</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{row.specialty_obj.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Ação</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+            <span mat-icon-button (click)="edit(row)">
+            <mat-icon matTooltip="Clique para editar">edit</mat-icon>
+          </span>
+        <span mat-icon-button (click)="delete(row)">
+              <mat-icon matTooltip="Clique para deletar">delete</mat-icon>
+            </span>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row
+      *matHeaderRowDef="['name', 'crm', 'dt_update', 'specialty', 'action']; sticky: true" class="table-header"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['name', 'crm', 'dt_update',  'specialty', 'action'];">
+    </mat-row>
+  </mat-table>
+</div>

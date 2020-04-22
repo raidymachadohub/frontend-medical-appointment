@@ -1,1 +1,92 @@
-<p>schedule works!</p>
+<mat-card class="app-card">
+  <form name="form" #f="ngForm" (submit)="f.form.valid && save()" novalidate>
+    <div class="group-margin">
+      <div class="title"></div>
+      <span class="sub-title">Agendamento</span></div>
+    <mat-form-field class="container-doctor">
+      <mat-label>Doutor</mat-label>
+      <mat-select [(ngModel)]="schedule.doctor_obj.id" name="doctor" required>
+        <mat-option *ngFor="let item of listDoctor" [value]="item.id">
+          {{item.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="container-doctor">
+      <input matInput placeholder="Paciente" [(ngModel)]="schedule.customer_obj.name" [value]="schedule.customer_obj.id"
+             name="customer" disabled>
+    </mat-form-field>
+
+    <mat-form-field class="container-doctor">
+      <input matInput placeholder="Comentário" [(ngModel)]="schedule.str_appointment" name="appointment" required>
+    </mat-form-field>
+
+    <mat-form-field class="container-doctor">
+      <input matInput [matDatepicker]="picker" [(ngModel)]="schedule.dt_appointment" placeholder="Escolha uma data"
+             name="doctor" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div class="btn-save">
+      <button mat-raised-button color="primary" type="submit" style="height: 48px; width: 134px; margin-left: 135px;">
+        Salvar
+      </button>
+    </div>
+  </form>
+</mat-card>
+
+<mat-card class="medical-card">
+  <mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Consultas
+        </mat-panel-title>
+        <mat-panel-description>
+          Lista de todas as consultas agendadas
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="table">
+        <mat-table [dataSource]="dataSource">
+
+          <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Paciente</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.customer_obj.name}}</mat-cell>
+          </ng-container>
+
+
+          <ng-container matColumnDef="doutor">
+            <mat-header-cell *matHeaderCellDef> Doutor</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.doctor_obj.name}}</mat-cell>
+          </ng-container>
+
+
+          <ng-container matColumnDef="dt_appointment">
+            <mat-header-cell *matHeaderCellDef> Data</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.dt_appointment | date: 'dd/MM/yyyy hh:MM:ss'}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="appointment">
+            <mat-header-cell *matHeaderCellDef>Obs</mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.str_appointment}}</mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <mat-header-cell *matHeaderCellDef> Ação</mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <span mat-icon-button (click)="delete(row)">
+              <mat-icon matTooltip="Clique para deletar">delete</mat-icon>
+            </span>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row
+            *matHeaderRowDef="['name', 'doutor', 'dt_appointment', 'appointment', 'action']; sticky: true" class="table-header"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: ['name', 'doutor', 'dt_appointment', 'appointment', 'action'];">
+          </mat-row>
+        </mat-table>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-card>

@@ -6,4 +6,8 @@ export class Doctor {
   public crm: string;
   public dt_update: Date;
   public specialty_obj: Specialty;
+
+  //
+  public message: string;
+  public code: number;
 }

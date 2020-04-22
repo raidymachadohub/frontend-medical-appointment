@@ -17,7 +17,12 @@ import {
   MatCardModule,
   MatDividerModule,
   MatExpansionModule,
-  MatGridListModule
+  MatGridListModule,
+  MatIconModule,
+  MatListModule,
+  MatTableModule,
+  MatTooltipModule,
+  MatNativeDateModule
 } from '@angular/material';
 import {CdkTableModule} from '@angular/cdk/table';
 import {FormsModule} from '@angular/forms';
@@ -46,7 +51,12 @@ import {ToastrModule} from 'ngx-toastr';
     MatExpansionModule,
     MatGridListModule,
     CdkTableModule,
+    MatIconModule,
+    MatListModule,
     FormsModule,
+    MatTableModule,
+    MatTooltipModule,
+    MatNativeDateModule,
     ToastrModule.forRoot()
   ],
   exports: [MatInputModule,
@@ -67,7 +77,12 @@ import {ToastrModule} from 'ngx-toastr';
     MatExpansionModule,
     MatGridListModule,
     CdkTableModule,
+    MatIconModule,
+    MatListModule,
     FormsModule,
+    MatTableModule,
+    MatTooltipModule,
+    MatNativeDateModule
   ],
   providers: [
     ]

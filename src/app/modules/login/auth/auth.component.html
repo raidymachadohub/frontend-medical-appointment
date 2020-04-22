@@ -1,11 +1,23 @@
-<form class="example-form">
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Usuário" name="username" [(ngModel)]="auth.username">
-  </mat-form-field>
+<div class="container-button-auth">
+  <mat-card style="text-align: center; margin-top: 100px;" class="auth-card">
+    <form>
+      <div class="logo-auth"></div>
+      <div class="group-margin"><span class="sub-title">Medical Appointment</span></div>
+      <mat-form-field class="container-auth">
+        <span matPrefix> <i class="material-icons">account_circle</i>&nbsp;</span>
+        <input matInput placeholder="Email" name="username" [(ngModel)]="auth.username">
+      </mat-form-field>
 
-  <mat-form-field class="example-full-width">
-    <input matInput placeholder="Senha" name="password" [(ngModel)]="auth.password">
-  </mat-form-field>
-</form>
-
-<button mat-raised-button color="primary" (click)="signin()" >Entrar</button>
+      <mat-form-field class="container-auth">
+        <span matPrefix> <i class="material-icons">lock</i>&nbsp;</span>
+        <input matInput placeholder="Senha" name="password" [(ngModel)]="auth.password" type="password">
+      </mat-form-field>
+      <div fxLayout="row" fxLayoutAlign="center" class="button-auth">
+        <button (click)="signin()" class="bt-login">Entrar</button>
+      </div>
+    </form>
+    <div class="auth-signin">
+      <button mat-button color="primary" (click)="signup()">Não tem uma conta?</button>
+    </div>
+  </mat-card>
+</div>
