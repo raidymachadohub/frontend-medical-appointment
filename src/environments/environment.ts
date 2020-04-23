@@ -5,8 +5,7 @@
 export const environment = {
   production: false,
   port: ':8080/',
-  api: 'api/',
-  ip: 'localhost'
+  api: 'api/'
 };
 
 /*

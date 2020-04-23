@@ -6,7 +6,7 @@ import {catchError, tap} from 'rxjs/operators';
 
 export class BaseService<T> {
   protected protocol: string = location.protocol;
-  protected hostname: string = environment.ip;
+  protected hostname: string = location.host;
   private api = environment.port;
   protected urlBase: string;
   protected parameters: HttpParams;
