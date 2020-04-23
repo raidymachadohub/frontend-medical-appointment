@@ -16,7 +16,7 @@ import {MatTableDataSource} from '@angular/material';
   styleUrls: ['./schedule.component.scss']
 })
 export class ScheduleComponent implements OnInit {
-
+  public minDate = new Date();
   public schedule: Schedule = new Schedule();
   public listDoctor: Array<Doctor> = new Array<Doctor>();
   dataSource: MatTableDataSource<Schedule> = new MatTableDataSource();
