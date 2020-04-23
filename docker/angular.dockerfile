@@ -10,6 +10,6 @@ WORKDIR /app
 RUN npm install
 RUN npm rebuild node-sass --force
 
-CMD ng serve --host 0.0.0.0 --poll=500
+CMD ng serve --prod --host 0.0.0.0 --poll=500
 
 EXPOSE 80
