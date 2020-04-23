@@ -1,0 +1,43 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+
+  - url: /(.+\.js)
+    static_files: dist/app-front/\1
+    upload: dist/app-front/(.+\.js)
+
+  - url: /(.+\.css)
+    static_files: dist/app-front/\1
+    upload: dist/app-front/(.+\.css)
+
+  - url: /(.+\.png)
+    static_files: dist/app-front/\1
+    upload: dist/app-front/(.+\.png)
+
+  - url: /(.+\.jpg)
+    static_files: dist/app-front/\1
+    upload: dist/app-front/(.+\.jpg)
+
+  - url: /(.+\.svg)
+    static_files: dist/app-front/\1
+    upload: dist/app-front/(.+\.svg)
+
+  - url: /favicon.ico
+    static_files: dist/app-front/favicon.ico
+    upload: dist/app-front/favicon.ico
+
+  - url: /(.+\.json)
+    static_files: dist/app-front/\1
+    upload: dist/app-front/(.+\.json)
+
+  - url: /(.+)
+    static_files: dist/app-front/index.html
+    upload: dist/app-front/index.html
+
+  - url: /
+    static_files: dist/app-front/index.html
+    upload: dist/app-front/index.html
+
+

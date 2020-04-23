@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  angular:
+    build:
+      context: .
+      dockerfile: ./docker/angular.dockerfile
+    container_name: frontend-medical-appointment
+    ports:
+      - "80:80"
